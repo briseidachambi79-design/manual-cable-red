@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual de Cableado Ethernet — T568A / T568B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🔌</span>
+        <span class="brand-text">
+          <strong>Manual Ethernet</strong>
+          <small>Cableado T568A · T568B</small>
+        </span>
+      </div>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#intro">Introducción</a>
+        <a href="#colores">Colores</a>
+        <a href="#tipos">Directo/Cruzado</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#paso-a-paso">Paso a paso</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#errores">Errores</a>
+        <a href="game.html">🎮 Juego</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="badge">Manual práctico</span>
+        <h1>Los colores de un cable de red (Ethernet)</h1>
+        <p class="hero-sub">
+          Aprende a identificar, ordenar y crimpar los ocho conductores de un cable UTP
+          según los estándares <strong>T568A</strong> y <strong>T568B</strong>, con diagramas,
+          guía paso a paso y ejercicios interactivos.
+        </p>
+        <div class="hero-cta">
+          <a href="#colores" class="btn btn-primary">Ver código de colores</a>
+          <a href="#paso-a-paso" class="btn btn-ghost">Cómo crimpar</a>
+          <a href="game.html" class="btn btn-ghost">🎮 Jugar</a>
+        </div>
+      </div>
+      <div class="hero-cable" aria-hidden="true">
+        <div class="cable-card">
+          <div class="rj45 top">
+            <div class="rj45-label">T568B</div>
+            <div class="pins">
+              <span class="pin"><span class="dot c-wn"></span>1 Blanco/Naranja</span>
+              <span class="pin"><span class="dot c-n"></span>2 Naranja</span>
+              <span class="pin"><span class="dot c-wv"></span>3 Blanco/Verde</span>
+              <span class="pin"><span class="dot c-a"></span>4 Azul</span>
+              <span class="pin"><span class="dot c-wa"></span>5 Blanco/Azul</span>
+              <span class="pin"><span class="dot c-v"></span>6 Verde</span>
+              <span class="pin"><span class="dot c-wm"></span>7 Blanco/Marrón</span>
+              <span class="pin"><span class="dot c-m"></span>8 Marrón</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="intro" class="section">
+    <div class="container">
+      <h2>1. Introducción</h2>
+      <p>
+        Un cable de red Ethernet (UTP/STP de par trenzado) contiene <strong>4 pares de hilos</strong>,
+        es decir <strong>8 conductores</strong>. Cada par tiene un color sólido y su acompañante “blanco
+        con raya” del mismo color. Para que los dispositivos se comuniquen, ambos extremos deben
+        seguir el <strong>mismo orden normalizado</strong> (T568A o T568B).
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>¿Por qué importan los colores?</h3>
+          <ul>
+            <li>Garantizan que cada pin lleve la señal correcta (TX/RX).</li>
+            <li>Evitan cortocircuitos y diafonía (crosstalk).</li>
+            <li>Permiten interoperabilidad entre fabricantes.</li>
+            <li>Facilitan el mantenimiento y la certificación.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Terminología clave</h3>
+          <ul>
+            <li><strong>UTP:</strong> Unshielded Twisted Pair (par trenzado sin blindaje).</li>
+            <li><strong>RJ45 (8P8C):</strong> conector modular de 8 posiciones.</li>
+            <li><strong>TIA/EIA-568:</strong> estándar de cableado comercial.</li>
+            <li><strong>T568A / T568B:</strong> los dos esquemas de colocación.</li>
+            <li><strong>Straight/Crossover:</strong> directo o cruzado.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Regla de oro:</strong> cada extremo debe usar un estándar completo. No mezcles
+        pares a la mitad (salvo que sepas exactamente lo que haces, como en un cable cruzado).
+      </div>
+    </div>
+  </section>
+
+  <section id="colores" class="section section-alt">
+    <div class="container">
+      <h2>2. Código de colores — T568A y T568B</h2>
+      <p>
+        Lee los pines <strong>de izquierda a derecha</strong> sosteniendo el conector RJ45 con
+        la pestaña hacia abajo (mirando el frente del conector).
+      </p>
+      <div class="standard-switch" role="tablist" aria-label="Estándar">
+        <button class="std-btn active" data-std="b" id="btnB">T568B (más común)</button>
+        <button class="std-btn" data-std="a" id="btnA">T568A</button>
+      </div>
+      <div class="table-wrap">
+        <table id="colorTable">
+          <thead>
+            <tr>
+              <th>Pin</th>
+              <th>Color</th>
+              <th>Par</th>
+              <th>Señal 10/100</th>
+              <th>Gigabit</th>
+            </tr>
+          </thead>
+          <tbody id="colorTableBody"></tbody>
+        </table>
+      </div>
+      <div class="grid-2 top-gap">
+        <div class="card visual-card">
+          <h3 id="visTitle">Conector RJ45 — T568B</h3>
+          <div class="rj45-visual" id="rj45Visual"></div>
+          <p class="caption">Vista frontal del conector (pestaña abajo). Pines numerados 1→8.</p>
+        </div>
+        <div class="card pair-card">
+          <h3>Los 4 pares trenzados</h3>
+          <div id="pairsLegend"></div>
+          <p class="caption">Cada par está trenzado para reducir interferencias. Mantén el twist
+          hasta el mismo pin.</p>
+        </div>
+      </div>
+      <div class="callout info">
+        <strong>Diferencia A vs B:</strong> solo se intercambian los pares <em>Naranja</em> y
+        <em>Verde</em>. El par Azul (4,5) y Marrón (7,8) son idénticos en ambos estándares.
+      </div>
+    </div>
+  </section>
+
+  <section id="tipos" class="section">
+    <div class="container">
+      <h2>3. Cable directo vs. cable cruzado</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cable directo (Straight-through)</h3>
+          <p>Mismo estándar en ambos extremos (B-B o A-A).</p>
+          <ul>
+            <li>PC → Switch / Router / Hub</li>
+            <li>Switch → Router</li>
+            <li>Uso más habitual (≈95% de las instalaciones).</li>
+          </ul>
+          <div class="ends">
+            <span class="end-chip b">B</span>
+            <span class="arrow">═══</span>
+            <span class="end-chip b">B</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Cable cruzado (Crossover)</h3>
+          <p>Estándares distintos en cada extremo (B-A).</p>
+          <ul>
+            <li>PC ↔ PC (sin switch)</li>
+            <li>Switch ↔ Switch (equipos antiguos)</li>
+            <li>Hoy en día casi todos los equipos tienen Auto-MDIX.</li>
+          </ul>
+          <div class="ends">
+            <span class="end-chip b">B</span>
+            <span class="arrow">═══</span>
+            <span class="end-chip a">A</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card top-gap">
+        <h3>🔧 Selector de tipo de cable</h3>
+        <label for="cableType" class="label">Elige un escenario:</label>
+        <select id="cableType" class="select">
+          <option value="directo">Directo — PC a Switch</option>
+          <option value="cruzado">Cruzado — PC a PC</option>
+          <option value="poe">PoE — Cámara/AP a Switch</option>
+        </select>
+        <div id="endsPreview" class="ends-preview"></div>
+        <p id="cableTypeInfo" class="caption"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="herramientas" class="section section-alt">
+    <div class="container">
+      <h2>4. Herramientas necesarias</h2>
+      <div class="grid-3">
+        <div class="card tool-card">
+          <div class="tool-icon">✂️</div>
+          <h3>Pelacables (stripper)</h3>
+          <p>Retira la funda exterior sin dañar los conductores.</p>
+        </div>
+        <div class="card tool-card">
+          <div class="tool-icon">🔧</div>
+          <h3>Crimpadora RJ45</h3>
+          <p>Presiona los pines sobre los hilos. Debe ser para categoría adecuada.</p>
+        </div>
+        <div class="card tool-card">
+          <div class="tool-icon">✂️</div>
+          <h3>Tijeras / corte</h3>
+          <p>Nivelan los 8 conductores para un corte recto.</p>
+        </div>
+        <div class="card tool-card">
+          <div class="tool-icon">🔌</div>
+          <h3>Conectores RJ45</h3>
+          <p>Cat5e / Cat6 / Cat6a según el cable.</p>
+        </div>
+        <div class="card tool-card">
+          <div class="tool-icon">📏</div>
+          <h3>Tester de cable</h3>
+          <p>Verifica continuidad y orden de pines en ambos extremos.</p>
+        </div>
+        <div class="card tool-card">
+          <div class="tool-icon">🔒</div>
+          <h3>Funda termocontraíble (opcional)</h3>
+          <p>Refuerza y protege el conector.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paso-a-paso" class="section">
+    <div class="container">
+      <h2>5. Paso a paso para crimpar un cable RJ45</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">1</span>
+          <div>
+            <h3>Mide y corta el cable</h3>
+            <p>Corta la longitud necesaria. Deja unos 5 cm extra en cada extremo para maniobrar.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <div>
+            <h3>Pela la funda exterior</h3>
+            <p>Retira ~12–15 mm de la funda exterior con el pelacables. Evita dañar los conductores.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">3</span>
+          <div>
+            <h3>Desenreda y ordena los hilos</h3>
+            <p>Separa los 4 pares y ordénalos según T568B (o T568A). Mantén el twist lo más cerca posible del corte.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">4</span>
+          <div>
+            <h3>Alínea y corta recto</h3>
+            <p>Pon los 8 hilos paralelos y córtalos de forma recta a unos 12 mm del borde de la funda.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">5</span>
+          <div>
+            <h3>Inserta en el conector</h3>
+            <p>Introduce los hilos en el RJ45 hasta el fondo: el cobre debe tocar el frente del conector y la funda debe entrar en la abrazadera.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">6</span>
+          <div>
+            <h3>Crimpa</h3>
+            <p>Inserta el conector en la crimpadora y aprieta firmemente. Verifica que los pines bajaron.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">7</span>
+          <div>
+            <h3>Repite en el otro extremo</h3>
+            <p>Usa el mismo estándar para cable directo, o el opuesto para cable cruzado.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">8</span>
+          <div>
+            <h3>Prueba con el tester</h3>
+            <p>Verifica continuidad y ausencia de cortos antes de dar por terminado.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="callout warning">
+        <strong>Consejo:</strong> no retires demasiado twist (máx. 13 mm sin twist) para evitar diafonía.
+        El par debe mantenerse trenzado hasta el último mm posible.
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="section section-alt">
+    <div class="container">
+      <h2>6. Mini quiz</h2>
+      <div class="card quiz-card">
+        <p id="quizQuestion" class="quiz-q"></p>
+        <div id="quizOptions" class="quiz-options"></div>
+        <p id="quizFeedback" class="quiz-feedback"></p>
+        <div class="quiz-actions">
+          <button id="nextBtn" class="btn btn-primary" style="display:none;">Siguiente</button>
+          <button id="restartQuiz" class="btn btn-ghost">Reiniciar</button>
+        </div>
+        <p id="quizScore" class="quiz-score"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="errores" class="section">
+    <div class="container">
+      <h2>7. Errores comunes y buenas prácticas</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>❌ Errores frecuentes</h3>
+          <ul>
+            <li>Mezclar estándares (un extremo A, el otro B por error).</li>
+            <li>No insertar la funda en la abrazadera (cable frágil).</li>
+            <li>Corte desalineado (los pines no hacen contacto).</li>
+            <li>Demasiado twist retirado (alta diafonía).</li>
+            <li>Usar conector de categoría inferior al cable.</li>
+            <li>No probar con tester.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>✅ Buenas prácticas</h3>
+          <ul>
+            <li>Etiqueta ambos extremos del cable.</li>
+            <li>Usa el mismo estándar en toda la instalación (recomendado T568B).</li>
+            <li>Respeta radios de curvatura (mín. 4× diámetro del cable).</li>
+            <li>No exceder 90 m de tendido horizontal (canal ≤ 100 m).</li>
+            <li>Evita correr paralelo a cables de alta tensión.</li>
+            <li>Documenta los puntos de red.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout info">
+        <strong>Recomendación:</strong> en redes nuevas se recomienda <strong>T568B</strong>
+        en toda la infraestructura por compatibilidad y por ser el más extendido.
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Manual de Cableado Ethernet · T568A / T568B · Hecho para aprender haciendo 🔌</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

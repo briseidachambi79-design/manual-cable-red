@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego: Memoria del Cableado — Ethernet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🎮</span>
+        <span class="brand-text">
+          <strong>Juego Ethernet</strong>
+          <small>Memoria del cableado</small>
+        </span>
+      </div>
+      <nav class="site-nav" aria-label="Navegación">
+        <a href="index.html">Manual</a>
+        <a href="#juego">Jugar</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero game-hero">
+    <div class="container">
+      <span class="badge">Juego educativo</span>
+      <h1>Ordena los 8 hilos del cable RJ45</h1>
+      <p class="hero-sub">
+        Arrastra (o toca) los conductores para reconstruir el estándar T568B/T568A.
+        ¡Gana puntos, supera tu récord y memoriza el orden para siempre!
+      </p>
+    </div>
+  </section>
+
+  <section id="juego" class="section">
+    <div class="container">
+      <!-- ===== CONTROLES ===== -->
+      <div class="game-controls card">
+        <div class="ctrl-row">
+          <div class="ctrl">
+            <label for="stdSelect">Estándar</label>
+            <select id="stdSelect" class="select">
+              <option value="b">T568B (más común)</option>
+              <option value="a">T568A</option>
+            </select>
+          </div>
+          <div class="ctrl">
+            <label for="modeSelect">Modo</label>
+            <select id="modeSelect" class="select">
+              <option value="practice">Práctica (sin tiempo)</option>
+              <option value="timed">Contrarreloj (45s)</option>
+              <option value="challenge">Desafío (3 vidas · 35s)</option>
+              <option value="extreme">Extremo (2 vidas · 20s)</option>
+            </select>
+          </div>
+          <div class="ctrl ctrl-buttons">
+            <button id="startBtn" class="btn btn-primary">▶ Empezar ronda</button>
+            <button id="checkBtn" class="btn" disabled>Verificar</button>
+            <button id="resetBtn" class="btn btn-ghost" disabled>Reiniciar</button>
+          </div>
+        </div>
+
+        <!-- ===== STATS ===== -->
+        <div class="stats">
+          <div class="stat"><span class="stat-label">Tiempo</span><span id="timeVal" class="stat-val">—</span></div>
+          <div class="stat"><span class="stat-label">Ronda</span><span id="roundVal" class="stat-val">0</span></div>
+          <div class="stat"><span class="stat-label">Puntaje</span><span id="scoreVal" class="stat-val">0</span></div>
+          <div class="stat"><span class="stat-label">Vidas</span><span id="livesVal" class="stat-val">❤️❤️❤️</span></div>
+          <div class="stat"><span class="stat-label">Récord</span><span id="bestVal" class="stat-val">0</span></div>
+        </div>
+      </div>
+
+      <!-- ===== TABLERO ===== -->
+      <div id="countdown" class="countdown" style="display:none;">3</div>
+      <div class="board">
+        <div class="col">
+          <h3>Hilos disponibles</h3>
+          <p class="caption">Arrástralos o tócalos para colocarlos en los pines.</p>
+          <div id="pool" class="pool"></div>
+        </div>
+        <div class="col">
+          <h3>Pines del conector (1 → 8)</h3>
+          <p class="caption">Coloca aquí los conductores en el orden correcto.</p>
+          <div id="slots" class="slots"></div>
+        </div>
+      </div>
+
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+
+      <!-- ===== SEGUNDO MODO: ADIVINA EL PIN ===== -->
+      <div class="card top-gap">
+        <h3>🎯 Modo rápido: ¿En qué pin va este color?</h3>
+        <p class="caption">Escribe el número del pin (1–8) para el color mostrado. Suma puntos por racha.</p>
+        <div id="quickArea" class="quick-area">
+          <div id="quickColor" class="quick-color">—</div>
+          <div class="quick-controls">
+            <input id="quickInput" type="number" min="1" max="8" placeholder="Pin" class="select quick-input" />
+            <button id="quickSubmit" class="btn btn-primary">Responder</button>
+            <button id="quickNext" class="btn btn-ghost">Otro color</button>
+          </div>
+          <p id="quickFeedback" class="quiz-feedback"></p>
+          <p class="quiz-score">Racha: <span id="streakVal">0</span> · Mejor: <span id="bestStreakVal">0</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="index.html">← Volver al manual</a> · Juego educativo de cableado Ethernet</p>
+    </div>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
